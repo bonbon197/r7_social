@@ -1,0 +1,19 @@
+<div class="row">
+
+  <%= render "devise/shared/sidebar" %>
+
+<div class="content col-8  rounded ">
+
+<h1>Editing report</h1>
+
+<%= render "form", report: @report %>
+
+<br>
+
+<div>
+  <%= link_to "Show this report", @report %> |
+  <%= link_to "Back to reports", reports_path %>
+</div>
+
+</div>
+</div>

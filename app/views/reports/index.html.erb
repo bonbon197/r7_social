@@ -1,0 +1,45 @@
+
+
+<div class="row">
+
+<%= render "devise/shared/sidebar" %>
+
+  <div class="content col-7  rounded ">
+  <p style="color: green"><%= notice %></p>
+    <div id="reports">
+
+        <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Date</th>
+            <th scope="col">Report Type</th>
+            <th scope="col">Author ID</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @reports.each do |r| %>
+          <tr>
+            <td ><%= r.id %></td>
+            <td><%= r.title %></td>
+            <td><%= r.date.strftime("%m/%d/%Y ")  %></td>
+            <td><%= r.report_type %></td>
+            <td><%= r.user_id %></td>
+            <td><%= link_to "View", r %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+
+      
+    </div>
+  </div>
+
+</div>
+
+<style>
+
+</style>

@@ -26,10 +26,22 @@
                 </figure>
             </div>
             <div class="media-content">
-                <div class="content">
-                    <strong><%= tweeet.user.name %></strong><br>
-                    <small>@<%= tweeet.user.username %></small><br>
-                    <p><%= tweeet.tweeet %></p>
+                
+                <div class="content ">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <strong><%= tweeet.user.name %></strong><br>
+                        </div>
+                        <div class="col-lg-7">
+                            <%=  tweeet.created_at.strftime("%m/%d/%Y at %I:%M%p") %>
+                        </div>
+
+                        <small>@<%= tweeet.user.username %></small><br>
+                            <p><%= tweeet.tweeet %></p>
+                    </div>
+                    
+                    
+                    
                 </div>
                 <% if user_signed_in? %>
                 <nav class="level">

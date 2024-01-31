@@ -1,0 +1,53 @@
+
+
+<%= simple_form_for(@report) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  
+  <div class="form-inputs">
+
+    <%= f.input :title,
+    input_html: { autocomplete: "name", class: "input" },
+    wrapper: false,
+    label_html: { class: "label"} %>
+
+    <%= f.input :content,
+    input_html: { autocomplete: "name", class: "input" },
+    wrapper: false,
+    label_html: { class: "label"} %>
+
+    <p><%= f.label :date %></p>
+    <%= f.date_field  :date ,
+    input_html: {autocomplete: "name", class: "input"},
+    wrapper: false,
+    label_html: { class: "label"} %>
+
+    <%# f.input :emp_transid,
+    input_html: { autocomplete: "name", class: "input" },
+    wrapper: false,
+    label_html: { class: "label"} %>
+
+    <%= f.input :report_type,
+    input_html: { autocomplete: "name", class: "input" },
+    wrapper: false,
+    label_html: { class: "label"}  %>
+
+    <%= f.input :office,
+    input_html: { autocomplete: "name", class: "input" },
+    wrapper: false,
+    label_html: { class: "label"} %>
+
+    <%= f.hidden_field :user_id, :value=> current_user.id  %>
+
+    <%= f.input :remarks,
+    input_html: { autocomplete: "name", class: "input" },
+    wrapper: false,
+    label_html: { class: "label"} %>
+  </div>
+
+  <div class="form-actions mt-2">
+    <%= f.button :submit, class: "button is-info is-medium" %>
+  </div>
+<% end %>
+
