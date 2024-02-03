@@ -34,5 +34,14 @@
     <strong>Remarks:</strong>
     <%= report.remarks %>
   </p>
+  <p>
+    <% if report.images.attached? %>
+    <% report.images.each do |image| %>
+      <div class="m-1">
+        <%= image_tag(image, height:100, :style=>'height:150px !important;') %>
+      </div>
+      <% end %>
+    <% end %>
+  </p>
 
 </div>

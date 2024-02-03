@@ -60,6 +60,12 @@ class ReportsController < ApplicationController
     end
   end
 
+  def remove_image
+    @image = ActiveStorage::Attachment.find(params[:id])
+    @image.purge_later
+    redirect_back(fallback_location: request.referer)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_report
@@ -68,6 +74,6 @@ class ReportsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def report_params
-      params.require(:report).permit(:title, :content, :date, :emp_transid, :report_type, :office, :user_id, :remarks)
+      params.require(:report).permit(:title, :content, :date, :emp_transid, :report_type, :office, :user_id, :remarks, images: [])
     end
 end

@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  resources :reports
+  
+  resources :reports do
+    member do
+      delete :remove_image
+    end
+  end
+
   devise_for :users, :controllers => { registrations: 'registrations'}
   resources :tweeets
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

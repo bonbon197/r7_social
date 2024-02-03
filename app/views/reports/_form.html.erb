@@ -17,22 +17,22 @@
     wrapper: false,
     label_html: { class: "label"} %>
 
-    <p><%= f.label :date %></p>
-    <%= f.date_field  :date ,
-    input_html: {autocomplete: "name", class: "input"},
-    wrapper: false,
-    label_html: { class: "label"} %>
+    <div><%= f.label :date, :style=>"font-size: 1rem;font-weight: 700;" %></div>
+    <%= f.date_field  :date ,:class=>"form-control" %>
 
     <%# f.input :emp_transid,
     input_html: { autocomplete: "name", class: "input" },
     wrapper: false,
     label_html: { class: "label"} %>
-
-    <%= f.input :report_type,
-    input_html: { autocomplete: "name", class: "input" },
-    wrapper: false,
-    label_html: { class: "label"}  %>
-
+    <div>
+    <div><%= f.label :report_type,:style=>"font-size: 1rem;font-weight: 700;" %></div>
+      <%= f.select(:report_type, options_for_select([["EMS", "EMS"],["MEETING","MEETING"],["TRAINING","TRAINING"],["OUTREACH","OUTREACH"]], selected: "EMS"),
+      {:class=> ''},{style:"width: 100%;
+      height: 40px;
+      border: 1px solid gray;
+      border-radius: 5px;"}) %>
+    </div>
+   
     <%= f.input :office,
     input_html: { autocomplete: "name", class: "input" },
     wrapper: false,
@@ -45,9 +45,33 @@
     wrapper: false,
     label_html: { class: "label"} %>
   </div>
+  
+  <div>
+    <%= f.label :images, "upload images" %> </br>
+    <% if @report.images.attached? %>
+      <% @report.images.each do |image| %>
+        <div style="border:1px solid gray;">
+          <%= f.hidden_field :images, multiple: true, value: image.signed_id %>
+          <%= button_to 'Delete', remove_image_report_path(image),  method: :delete ,:class=>"btn btn-danger my-1"%> </br>
+          <%= image_tag(image, height:100, class: "img" ) %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <%= f.file_field :images, multiple: true %> 
+
+  </div>
 
   <div class="form-actions mt-2">
     <%= f.button :submit, class: "button is-info is-medium" %>
   </div>
 <% end %>
+
+<style> 
+
+.img{
+  height:150px !important;
+}
+
+</style>
 
