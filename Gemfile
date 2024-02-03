@@ -57,6 +57,8 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
 
   gem 'rspec-rails', '~> 6.1', '>= 6.1.1'
+
+  gem 'better_errors', '~> 2.10', '>= 2.10.1'
 end
 
 group :development do
