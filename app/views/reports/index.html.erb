@@ -7,6 +7,8 @@
   <div class="content col-7  rounded ">
   <p style="color: green"><%= notice %></p>
     <div id="reports">
+    <%= link_to "Download ", download_path, :class=>"btn btn-secondary mx-1"%>
+<%= link_to "Print ", preview_path(@reports), :class=>"btn btn-secondary"%>
 
         <table class="table">
         <thead>
