@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[ show edit update destroy ]
+  before_action :set_report, only: %i[ show edit update destroy singlereport ]
   before_action :authenticate_user!, except: [ :index, :show ]
 
   # GET /reports or /reports.json
@@ -8,8 +8,56 @@ class ReportsController < ApplicationController
     @reports = Report.all
   end
 
+  def download
+    Time.zone = 'Asia/Manila'
+    @reports = Report.all
+
+    pdf = Prawn::Document.new
+    pdf.text 'Hello World'
+    send_data(pdf.render,
+    filename:'report.pdf',
+    type: 'application/pdf'
+    )
+  end
+
+  def preview
+    Time.zone = 'Asia/Manila'
+    @reports = Report.all
+
+    pdf = Prawn::Document.new
+    pdf.text 'This is preview'
+    send_data(pdf.render,
+    filename:'report.pdf',
+    type: 'application/pdf',
+    disposition: 'inline'
+    )
+  end
+
+  def singlereport
+    Time.zone = 'Asia/Manila'
+    pdf = Prawn::Document.new
+    # pdf.text @report.date
+    pdf.text @report.title, size:30, style: :bold
+    pdf.text @report.content
+
+    # report_image = @report.images 
+    # images_print = StringIO.open(report_image.download)
+    # pdf.image images_print, fit: [100,100]
+
+    send_data(pdf.render,
+    filename:'#{@report.title}.pdf',
+    type: 'application/pdf',
+    disposition: 'inline')
+  end
+
   # GET /reports/1 or /reports/1.json
   def show
+    # respond_to do |format|
+    #   format.html
+    #   format.pdf do
+    #     render pdf: "report", template: "reports/show.html.erb"   # Excluding ".pdf" extension.
+    #   end
+    # end
   end
 
   # GET /reports/new
