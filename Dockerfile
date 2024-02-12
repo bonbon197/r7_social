@@ -8,10 +8,11 @@ FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 WORKDIR /rails
 
 # Set development environment
-ENV RAILS_ENV=production
-ENV RAILS_LOG_TO_STDOUT=true
-ENV RAILS_MAX_THREADS=5
-ENV RAILS_MASTER_KEY=not_needed_in_docker
+ENV RAILS_ENV="production" \
+    BUNDLE_DEPLOYMENT="1" \
+    BUNDLE_PATH="/usr/local/bundle" \
+    BUNDLE_WITHOUT="development"
+    
 ENV SECRET_KEY_BASE=31cf7509b447505d23aea780fdb0a76bfb071b4ada81d65008868953650d448a2bdda7a3b8b9d210daf36e43e42a92f1e83c451eb684e38315e35dcee91a838c
 
 
