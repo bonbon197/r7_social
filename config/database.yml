@@ -21,7 +21,7 @@ default: &default
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
   #host: <%= ENV['DB_HOST'] %>
-  port: <%= ENV.fetch('DB_PORT') { 8080 } %>
+  #port: <%= ENV.fetch('DB_PORT') { 8080 } %>
 
 development:
   <<: *default
@@ -44,7 +44,7 @@ development:
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
-  port: 8080
+  port: 5432
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
