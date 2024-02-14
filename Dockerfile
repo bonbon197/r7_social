@@ -13,6 +13,8 @@ ENV RAILS_ENV="production" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development"
 
+ENV SECRET_KEY_BASE=31cf7509b447505d23aea780fdb0a76bfb071b4ada81d65008868953650d448a2bdda7a3b8b9d210daf36e43e42a92f1e83c451eb684e38315e35dcee91a838c
+
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -34,7 +36,7 @@ COPY . .
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+#RUN RAILS_ENV=production ./bin/rails assets:precompile
 
 
 # Final stage for app image
@@ -59,4 +61,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
+CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
